@@ -1,5 +1,7 @@
 "use client"
 
+import * as React from "react"
+
 import {
   BadgeCheck,
   Bell,
@@ -8,7 +10,8 @@ import {
   LogOut,
   Sparkles,
   Moon,
-  Sun
+  Sun,
+  Palette
 } from "lucide-react"
 
 import {
@@ -22,7 +25,12 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuPortal,
   DropdownMenuSeparator,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import {
@@ -33,6 +41,7 @@ import {
 } from "@/components/ui/sidebar"
 
 import { useTheme } from "next-themes"
+import { useThemeColor } from "@/hooks/use-theme-color"
 
 export function NavUser({
   user,
@@ -44,31 +53,13 @@ export function NavUser({
   }
 }) {
   const { isMobile } = useSidebar()
-
-  const ThemeToggleMenuItem = () => {
-    const { theme, setTheme } = useTheme()
-
-    if (theme === "light") {
-      return (
-        <DropdownMenuItem onClick={() => setTheme("dark")}>
-          <Moon />
-          Dark Theme
-        </DropdownMenuItem>
-      )
-    } else if (theme === "dark") {
-      return (
-        <DropdownMenuItem onClick={() => setTheme("light")}>
-          <Sun />
-          Light Theme
-        </DropdownMenuItem>
-      )
-    }
-  }
+  const { theme, setTheme } = useTheme()
+  const { themeColor, setThemeColor } = useThemeColor()
 
   return (
     <SidebarMenu>
       <SidebarMenuItem>
-        <DropdownMenu>
+        <DropdownMenu modal={false}>
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"
@@ -124,7 +115,59 @@ export function NavUser({
                 <Bell />
                 Notifications
               </DropdownMenuItem>
-              <ThemeToggleMenuItem />
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger>
+                  <Palette />
+                  Apperance
+                </DropdownMenuSubTrigger>
+                <DropdownMenuContent className="w-56 rtl:dir-rtl" side="left">
+                  <DropdownMenuRadioGroup value={theme} onValueChange={setTheme}>
+                    <DropdownMenuRadioItem value="dark">
+                      <Moon />
+                      Dark Theme
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="light">
+                      <Sun />
+                      Light Theme
+                    </DropdownMenuRadioItem>
+                  </DropdownMenuRadioGroup>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuRadioGroup value={themeColor} onValueChange={setThemeColor}>
+                    <DropdownMenuRadioItem value="default">
+                      <span className="w-4 h-4 rounded bg-theme-default-light dark:bg-theme-default-dark"></span>
+                      Default
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="red">
+                      <span className="w-4 h-4 rounded bg-theme-red"></span>
+                      Red
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="rose">
+                      <span className="w-4 h-4 rounded bg-theme-rose"></span>
+                      Rose
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="orange">
+                      <span className="w-4 h-4 rounded bg-theme-orange"></span>
+                      Orange
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="green">
+                      <span className="w-4 h-4 rounded bg-theme-green"></span>
+                      Green
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="blue">
+                      <span className="w-4 h-4 rounded bg-theme-blue"></span>
+                      Blue
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="yellow">
+                      <span className="w-4 h-4 rounded bg-theme-yellow"></span>
+                      Yellow
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="violet">
+                      <span className="w-4 h-4 rounded bg-theme-violet"></span>
+                      Violet
+                    </DropdownMenuRadioItem>
+                  </DropdownMenuRadioGroup>
+                </DropdownMenuContent>
+              </DropdownMenuSub>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
