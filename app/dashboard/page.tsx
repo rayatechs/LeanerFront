@@ -4,22 +4,44 @@ import {
   SidebarInset,
   SidebarProvider
 } from "@/components/ui/sidebar"
+import { Hourglass } from "lucide-react"
+import { SearchForm } from "@/components/search-form"
 
 export default function Page() {
   return (
-    <SidebarProvider>
-      <AppSidebar side="right" collapsible="icon" />
-      <SidebarInset className="rtl:!ml-2 rtl:!mr-0">
-        <SiteHeader />
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-          <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-            <div className="bg-muted/50 aspect-video rounded-xl" />
+    <div className="[--header-height:calc(--spacing(12))]">
+      <SidebarProvider className="flex flex-col">
+        <header className="sticky top-0 z-50 flex w-full items-center bg-navbar">
+          <div className="flex h-(--header-height) w-full items-center gap-2 px-4 py-2">
+            <div className="w-1/3">
+              <span className="bg-primary/10 text-primary flex h-8 w-8 items-center justify-center rounded-lg">
+                <Hourglass width={16} />
+              </span>
+            </div>
+            <div className="w-1/3">
+              <SearchForm className="w-1/2 mx-auto" />
+            </div>
+            <div className="w-1/3">
+
+            </div>
           </div>
-          <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min" />
+        </header>
+        
+        <div className="flex flex-row w-full h-full">
+          <AppSidebar side="right" collapsible="icon" />
+          <SidebarInset className="!m-0 !rounded-l-none !rounded-b-none fixed inset-y-0 top-(--header-height) h-[calc(100svh-var(--header-height)-calc(var(--spacing) * 2))]! w-[calc(100%-var(--sidebar-width))]! left-0 overflow-y-auto peer-data-[state=collapsed]:w-[calc(100%-var(--sidebar-width-icon)-20px)]! transition-[left,right,width] duration-200 ease-linear">
+            <SiteHeader />
+            <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+              <div className="grid auto-rows-min gap-4 md:grid-cols-3">
+                <div className="bg-muted/50 aspect-video rounded-xl" />
+                <div className="bg-muted/50 aspect-video rounded-xl" />
+                <div className="bg-muted/50 aspect-video rounded-xl" />
+              </div>
+              <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xl" />
+            </div>
+          </SidebarInset>
         </div>
-      </SidebarInset>
-    </SidebarProvider>
+      </SidebarProvider>
+    </div>
   )
 }

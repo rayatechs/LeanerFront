@@ -1,6 +1,5 @@
 "use client"
 
-import { SearchForm } from "@/components/search-form"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -34,7 +33,6 @@ export function SiteHeader() {
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
-        <SearchForm className="w-full sm:ml-auto rtl:sm:mr-auto rtl:sm:ml-0 sm:w-auto" />
       </div>
     </header>
   )
