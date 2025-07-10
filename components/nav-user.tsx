@@ -98,72 +98,72 @@ export function NavUser({
             <DropdownMenuGroup>
               <DropdownMenuItem>
                 <Sparkles />
-                Upgrade to Pro
+                ارتقاء به پریمیوم
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
                 <BadgeCheck />
-                Account
+                حساب کاربری
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <CreditCard />
-                Billing
+                صورت حساب
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Bell />
-                Notifications
+                نوتیفیکیشن ها
               </DropdownMenuItem>
               <DropdownMenuSub>
                 <DropdownMenuSubTrigger>
                   <Palette />
-                  Apperance
+                  ظاهر
                 </DropdownMenuSubTrigger>
                 <DropdownMenuContent className="w-56 rtl:dir-rtl" side="left">
                   <DropdownMenuRadioGroup value={theme} onValueChange={setTheme}>
                     <DropdownMenuRadioItem value="dark">
                       <Moon />
-                      Dark Theme
+                      تم دارک
                     </DropdownMenuRadioItem>
                     <DropdownMenuRadioItem value="light">
                       <Sun />
-                      Light Theme
+                      تم لایت
                     </DropdownMenuRadioItem>
                   </DropdownMenuRadioGroup>
                   <DropdownMenuSeparator />
                   <DropdownMenuRadioGroup value={themeColor} onValueChange={setThemeColor}>
                     <DropdownMenuRadioItem value="default">
                       <span className="w-4 h-4 rounded bg-theme-default-light dark:bg-theme-default-dark"></span>
-                      Default
+                      پیشفرض
                     </DropdownMenuRadioItem>
                     <DropdownMenuRadioItem value="red">
                       <span className="w-4 h-4 rounded bg-theme-red"></span>
-                      Red
+                      قرمز
                     </DropdownMenuRadioItem>
                     <DropdownMenuRadioItem value="rose">
                       <span className="w-4 h-4 rounded bg-theme-rose"></span>
-                      Rose
+                      رز
                     </DropdownMenuRadioItem>
                     <DropdownMenuRadioItem value="orange">
                       <span className="w-4 h-4 rounded bg-theme-orange"></span>
-                      Orange
+                      نارنجی
                     </DropdownMenuRadioItem>
                     <DropdownMenuRadioItem value="green">
                       <span className="w-4 h-4 rounded bg-theme-green"></span>
-                      Green
+                      سبز
                     </DropdownMenuRadioItem>
                     <DropdownMenuRadioItem value="blue">
                       <span className="w-4 h-4 rounded bg-theme-blue"></span>
-                      Blue
+                      آبی
                     </DropdownMenuRadioItem>
                     <DropdownMenuRadioItem value="yellow">
                       <span className="w-4 h-4 rounded bg-theme-yellow"></span>
-                      Yellow
+                      زرد
                     </DropdownMenuRadioItem>
                     <DropdownMenuRadioItem value="violet">
                       <span className="w-4 h-4 rounded bg-theme-violet"></span>
-                      Violet
+                      بنفش
                     </DropdownMenuRadioItem>
                   </DropdownMenuRadioGroup>
                 </DropdownMenuContent>
@@ -172,7 +172,7 @@ export function NavUser({
             <DropdownMenuSeparator />
             <DropdownMenuItem>
               <LogOut />
-              Log out
+              خروج
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

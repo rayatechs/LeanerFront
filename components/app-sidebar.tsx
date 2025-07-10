@@ -3,17 +3,15 @@
 import * as React from "react"
 import {
   AudioWaveform,
-  BookOpen,
-  Bot,
+  Inbox,
   Command,
-  Frame,
   GalleryVerticalEnd,
   LifeBuoy,
-  Map,
-  PieChart,
+  SendToBack,
   Send,
-  Settings2,
-  SquareTerminal,
+  MessageCircleMore,
+  House,
+  Ellipsis
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -30,142 +28,73 @@ import {
 
 const data = {
   user: {
-    name: "shadcn",
+    name: "علی دبیری",
     email: "m@example.com",
     avatar: "/avatars/shadcn.jpg",
   },
   navMain: [
     {
-      title: "Playground",
+      title: "خانه",
       url: "#",
-      icon: SquareTerminal,
+      icon: House,
       isActive: true,
-      items: [
-        {
-          title: "History",
-          url: "#",
-        },
-        {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
-          url: "#",
-        },
-      ],
     },
     {
-      title: "Models",
+      title: "اعلانات",
       url: "#",
-      icon: Bot,
-      items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
+      icon: Inbox
     },
     {
-      title: "Documentation",
+      title: "گفتگوها",
       url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
+      icon: MessageCircleMore
     },
     {
-      title: "Settings",
+      title: "بیشتر",
       url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
-      ],
+      icon: Ellipsis
     },
   ],
   navSecondary: [
     {
-      title: "Support",
+      title: "پشتیبانی",
       url: "#",
       icon: LifeBuoy,
     },
     {
-      title: "Feedback",
+      title: "بازخورد",
       url: "#",
       icon: Send,
     },
   ],
   projects: [
     {
-      name: "Design Engineering",
+      name: "بکلاگ",
       url: "#",
-      icon: Frame,
+      icon: GalleryVerticalEnd,
+      items: [
+        {
+          title: "بکلاگ فنی",
+          url: "#",
+        },
+        {
+          title: "بکلاگ محصول",
+          url: "#",
+        }
+      ],
     },
     {
-      name: "Sales & Marketing",
+      name: "اسپرینت",
       url: "#",
-      icon: PieChart,
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: Map,
-    },
+      icon: SendToBack,
+    }
   ],
   teams: [
     {
-      name: "Acme Inc",
+      name: "سلام کریپتو",
       logo: GalleryVerticalEnd,
-      plan: "Enterprise",
-    },
-    {
-      name: "Acme Corp.",
-      logo: AudioWaveform,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: Command,
-      plan: "Free",
-    },
+      plan: "همتا",
+    }
   ],
 }
 
