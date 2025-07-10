@@ -613,6 +613,26 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  *::-webkit-scrollbar {
+    width: 0.4rem;
+    padding: 0.5rem;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--background);
+    margin: 5px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: var(--muted);
+    border-radius: var(--radius-xl);
+  }  
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--muted-foreground);
+    border-radius: var(--radius-xl);
+  }
 }
 
 @utility dir-rtl {
