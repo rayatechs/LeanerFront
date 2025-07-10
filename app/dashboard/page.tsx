@@ -4,8 +4,9 @@ import {
   SidebarInset,
   SidebarProvider
 } from "@/components/ui/sidebar"
-import { Hourglass } from "lucide-react"
+import { Hourglass, Plus } from "lucide-react"
 import { SearchForm } from "@/components/search-form"
+import { Button } from "@/components/ui/button"
 
 export default function Page() {
   return (
@@ -19,7 +20,12 @@ export default function Page() {
               </span>
             </div>
             <div className="md:w-1/3 flex-1 md:flex-auto">
-              <SearchForm className="w-1/2 mx-auto" />
+              <div className="flex w-full max-w-sm items-center mx-auto">
+                <SearchForm className="flex-1" />
+                <Button className="p-0 rounded-r-none h-7 cursor-pointer" variant="outline">
+                  <Plus />
+                </Button>
+              </div>
             </div>
             <div className="w-1/3 hidden md:block">
 
