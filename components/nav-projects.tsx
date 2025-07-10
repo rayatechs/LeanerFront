@@ -2,10 +2,10 @@
 
 import {
   ChevronLeft,
-  Folder,
+  CircleFadingPlus,
   MoreHorizontal,
-  Share,
-  Trash2,
+  GitPullRequestCreateArrow,
+  PencilLine,
   type LucideIcon,
 } from "lucide-react"
 
@@ -90,22 +90,22 @@ export function NavProjects({
                   </SidebarMenuAction>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
-                  className="w-48"
+                  className="w-48 rtl:dir-rtl"
                   side={isMobile ? "bottom" : "left"}
                   align={isMobile ? "end" : "start"}
                 >
                   <DropdownMenuItem>
-                    <Folder className="text-muted-foreground" />
-                    <span>View Project</span>
+                    <CircleFadingPlus className="text-muted-foreground" />
+                    <span>افزودن کار جدید</span>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
-                    <Share className="text-muted-foreground" />
-                    <span>Share Project</span>
+                    <GitPullRequestCreateArrow className="text-muted-foreground" />
+                    <span>ویرایش وضعیت ها</span>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem>
-                    <Trash2 className="text-muted-foreground" />
-                    <span>Delete Project</span>
+                    <PencilLine className="text-muted-foreground" />
+                    <span>ویرایش فیلد ها</span>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
