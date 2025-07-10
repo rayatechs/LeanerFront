@@ -13,7 +13,7 @@ import { SidebarTrigger } from "@/components/ui/sidebar"
 
 export function SiteHeader() {
   return (
-    <header className="flex w-full h-16 shrink-0 items-center gap-2">
+    <header className="flex w-full h-16 shrink-0 items-center gap-2 sticky top-0 bg-background">
       <div className="flex w-full items-center gap-2 px-4">
         <SidebarTrigger className="-ml-1" />
         <Separator
