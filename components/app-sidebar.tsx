@@ -2,9 +2,7 @@
 
 import * as React from "react"
 import {
-  AudioWaveform,
   Inbox,
-  Command,
   GalleryVerticalEnd,
   LifeBuoy,
   SendToBack,
