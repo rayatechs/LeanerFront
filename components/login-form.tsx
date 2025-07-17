@@ -3,6 +3,7 @@
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { PasswordInput } from "@/components/ui/password-input"
 import { z } from "zod"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -28,6 +29,10 @@ export function LoginForm({
   const form = useForm<loginFormValues>({
     resolver: zodResolver(loginFormSchema),
     mode: "onChange",
+    defaultValues: {
+      email: '',
+      password: '',
+    },
   })
 
   async function onSubmit(values: loginFormValues) {
@@ -85,7 +90,7 @@ export function LoginForm({
                   </Link>
                 </div>
                 <FormControl>
-                  <Input
+                  <PasswordInput
                     className="text-left"
                     id="password"
                     placeholder="******"
@@ -123,6 +128,7 @@ export function LoginForm({
           <Link href="#" className="underline underline-offset-4">
             ثبت نام
           </Link>
+          {" "} کنید!
         </div>
       </form>
     </Form>
