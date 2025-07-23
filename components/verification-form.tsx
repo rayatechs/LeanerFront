@@ -53,7 +53,15 @@ export function VerificationForm({
             name="otp"
             render={({ field }) => (
               <FormItem className="grid gap-3">
-                <FormLabel htmlFor="otp">کد یکبار مصرف</FormLabel>
+                <div className="flex justify-between items-center">
+                  <FormLabel htmlFor="otp">کد یکبار مصرف</FormLabel>
+                  <Link
+                    href="#"
+                    className="ml-auto rtl:mr-auto rtl:ml-0 text-sm underline-offset-4 hover:underline"
+                  >
+                    ارسال مجدد
+                  </Link>
+                </div>
                 <FormControl>
                   <InputOTP containerClassName="justify-between" id="otp"  maxLength={6} {...field}>
                     <InputOTPGroup>
