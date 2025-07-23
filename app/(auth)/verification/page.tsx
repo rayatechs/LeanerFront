@@ -1,4 +1,4 @@
-import { VerificationForm } from "@/components/verification-form"
+import { VerificationForm } from "@/components/pages/auth/verification/form"
 
 export default function RegisterPage() {
   return (
