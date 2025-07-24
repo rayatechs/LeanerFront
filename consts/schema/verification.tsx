@@ -7,6 +7,7 @@ const FormSchema = z.object({
     .string()
     .length(6, "کد باید ۶ رقمی باشد")
     .regex(/^\d+$/, "کد باید فقط شامل اعداد باشد"),
+  email: z.string()
 })
 
 type FormValues = z.infer<typeof FormSchema>
@@ -16,7 +17,8 @@ function formResolver(): UseFormReturn<FormValues> {
     resolver: zodResolver(FormSchema),
     mode: "onChange",
     defaultValues: {
-        otp: undefined
+        otp: undefined,
+        email: ''
     },
   })
 }
