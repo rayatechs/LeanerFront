@@ -1,51 +1,24 @@
 "use client"
 
-import { z } from "zod"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
+import { formResolver, type FormValues } from "@/consts/schema/register"
 import { cn } from "@/lib/utils"
+
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { PasswordInput } from "@/components/ui/password-input"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+
 import { LoginByGoogleButton } from "@/components/pages/auth/login-by-google-button"
 import { FormHeader } from "@/components/pages/auth/form-header"
 import { LoginCTA } from "@/components/pages/auth/login-cta"
-
-const registerFormSchema = z.object({
-  fullname: z.string('نام و نام‌خانوادگی را وارد کنید'),
-  email: z
-    .email('پست الکترونیک را به درستی وارد کنید'),
-  password: z
-    .string('رمزعبور را وارد کنید')
-    .min(8, { message: 'رمزعبور باید حداقل 8 کاراکتر باشد' })
-    .regex(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/, {
-      message: 'رمزعبور باید شامل حداقل یک حرف، یک عدد و یک نماد خاص باشد',
-    }),
-  confirmPassword: z.string('تکرار رمزعبور را وارد کنید')
-}).refine((data) => data.password === data.confirmPassword, {
-  message: 'رمزعبور و تکرار آن باید یکسان باشند',
-  path: ["confirmPassword"],
-})
-
-type registerFormValues = z.infer<typeof registerFormSchema>
 
 export function RegisterForm({
   className,
   ...props
 }: React.ComponentProps<"form">) {
-  const form = useForm<registerFormValues>({
-    resolver: zodResolver(registerFormSchema),
-    mode: "onChange",
-    defaultValues: {
-      fullname: '',
-      email: '',
-      password: '',
-      confirmPassword: '',
-    },
-  })
+  const form = formResolver()
 
-  async function onSubmit(values: registerFormValues) {
+  async function onSubmit(values: FormValues) {
     console.log(values)    
   }
 

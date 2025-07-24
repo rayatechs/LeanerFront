@@ -1,50 +1,24 @@
 "use client"
 
-import Link from "next/link"
-import { z } from "zod"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
+import { formResolver, type FormValues } from "@/consts/schema/reset-password"
 import { cn } from "@/lib/utils"
+
 import { Button } from "@/components/ui/button"
 import { PasswordInput } from "@/components/ui/password-input"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+
 import { LoginByGoogleButton } from "@/components/pages/auth/login-by-google-button"
 import { FormHeader } from "@/components/pages/auth/form-header"
 import { RegisterCTA } from "@/components/pages/auth/register-cta"
-
-const resetPasswordFormSchema = z.object({
-  password: z
-    .string('رمزعبور را وارد کنید')
-    .min(8, { message: 'رمزعبور باید حداقل 8 کاراکتر باشد' })
-    .regex(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/, {
-      message: 'رمزعبور باید شامل حداقل یک حرف، یک عدد و یک نماد خاص باشد',
-    }),
-  confirmPassword: z.string('تکرار رمزعبور را وارد کنید')
-}).refine((data) => data.password === data.confirmPassword, {
-  message: 'رمزعبور و تکرار آن باید یکسان باشند',
-  path: ["confirmPassword"],
-})
-
-type resetPasswordFormValues = z.infer<typeof resetPasswordFormSchema>
 
 export function ResetPasswordForm({
   className,
   ...props
 }: React.ComponentProps<"form">) {
-  const form = useForm<resetPasswordFormValues>({
-    resolver: zodResolver(resetPasswordFormSchema),
-    mode: "onChange",
-    defaultValues: {
-      password: '',
-      confirmPassword: '',
-    },
-  })
+  const form = formResolver()
 
-  async function onSubmit(values: resetPasswordFormValues) {
+  async function onSubmit(values: FormValues) {
     console.log(values)
-    const res = await fetch('/api/resetPassword');
-    console.log(res);
-    
   }
 
   return (

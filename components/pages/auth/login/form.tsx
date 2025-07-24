@@ -1,48 +1,27 @@
 "use client"
 
 import Link from "next/link"
-import { z } from "zod"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
+
+import { formResolver, type FormValues } from "@/consts/schema/login"
 import { cn } from "@/lib/utils"
+
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { PasswordInput } from "@/components/ui/password-input"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+
 import { LoginByGoogleButton } from "@/components/pages/auth/login-by-google-button"
 import { FormHeader } from "@/components/pages/auth/form-header"
 import { RegisterCTA } from "@/components/pages/auth/register-cta"
-
-const loginFormSchema = z.object({
-  email: z
-    .email('پست الکترونیک را به درستی وارد کنید'),
-  password: z
-    .string('رمزعبور را وارد کنید')
-    .min(8, { message: 'رمزعبور باید حداقل 8 کاراکتر باشد' })
-    .regex(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/, {
-      message: 'رمزعبور باید شامل حداقل یک حرف، یک عدد و یک نماد خاص باشد',
-    }),
-})
-type loginFormValues = z.infer<typeof loginFormSchema>
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"form">) {
-  const form = useForm<loginFormValues>({
-    resolver: zodResolver(loginFormSchema),
-    mode: "onChange",
-    defaultValues: {
-      email: '',
-      password: '',
-    },
-  })
+  const form = formResolver()
 
-  async function onSubmit(values: loginFormValues) {
+  async function onSubmit(values: FormValues) {
     console.log(values)
-    const res = await fetch('/api/login');
-    console.log(res);
-    
   }
 
   return (

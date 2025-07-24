@@ -1,38 +1,24 @@
 "use client"
 
-import { z } from "zod"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
+import { formResolver, type FormValues } from "@/consts/schema/forget-password"
 import { cn } from "@/lib/utils"
+
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+
 import { LoginByGoogleButton } from "@/components/pages/auth/login-by-google-button"
 import { FormHeader } from "@/components/pages/auth/form-header"
 import { RegisterCTA } from "@/components/pages/auth/register-cta"
-
-const forgetPasswordFormSchema = z.object({
-  email: z
-    .email('پست الکترونیک را به درستی وارد کنید')
-})
-type forgetPasswordFormValues = z.infer<typeof forgetPasswordFormSchema>
 
 export function ForgetPasswordForm({
   className,
   ...props
 }: React.ComponentProps<"form">) {
-  const form = useForm<forgetPasswordFormValues>({
-    resolver: zodResolver(forgetPasswordFormSchema),
-    mode: "onChange",
-    defaultValues: {
-      email: '',
-    },
-  })
+  const form = formResolver()
 
-  async function onSubmit(values: forgetPasswordFormValues) {
+  async function onSubmit(values: FormValues) {
     console.log(values)
-    const res = await fetch('/api/forgetPassword');
-    console.log(res);
   }
 
   return (

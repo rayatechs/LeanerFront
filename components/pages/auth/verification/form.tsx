@@ -1,42 +1,26 @@
 "use client"
 
 import Link from "next/link"
-import { z } from "zod"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
+
+import { formResolver, type FormValues } from "@/consts/schema/verification"
 import { cn } from "@/lib/utils"
+
 import { Button } from "@/components/ui/button"
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+
 import { LoginByGoogleButton } from "@/components/pages/auth/login-by-google-button"
 import { FormHeader } from "@/components/pages/auth/form-header"
 import { RegisterCTA } from "@/components/pages/auth/register-cta"
-
-const verificationFormSchema = z.object({
-  otp: z
-    .string()
-    .length(6, "کد باید ۶ رقمی باشد")
-    .regex(/^\d+$/, "کد باید فقط شامل اعداد باشد"),
-})
-type verificationFormValues = z.infer<typeof verificationFormSchema>
 
 export function VerificationForm({
   className,
   ...props
 }: React.ComponentProps<"form">) {
-  const form = useForm<verificationFormValues>({
-    resolver: zodResolver(verificationFormSchema),
-    mode: "onChange",
-    defaultValues: {
-      otp: undefined
-    },
-  })
+  const form = formResolver()
 
-  async function onSubmit(values: verificationFormValues) {
-    console.log(values)
-    const res = await fetch('/api/verification');
-    console.log(res);
-    
+  async function onSubmit(values: FormValues) {
+    console.log(values)    
   }
 
   return (
