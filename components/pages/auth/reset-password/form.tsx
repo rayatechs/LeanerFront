@@ -10,7 +10,7 @@ import { LoginByGoogleButton } from "@/components/pages/auth/login-by-google-but
 import { FormHeader } from "@/components/pages/auth/form-header"
 import { RegisterCTA } from "@/components/pages/auth/register-cta"
 import { PasswordFormField } from "@/components/pages/auth/password-form-field"
-import { ConfirmPasswordFormField } from "@/components/pages/auth/confirm-password-form-field"
+import { PasswordConfirmationFormField } from "@/components/pages/auth/password-confirmation-form-field"
 import { Separator } from "@/components/pages/auth/separator"
 
 export function ResetPasswordForm({
@@ -34,7 +34,7 @@ export function ResetPasswordForm({
         <div className="grid gap-6">
           <PasswordFormField form={form} />
 
-          <ConfirmPasswordFormField form={form} />
+          <PasswordConfirmationFormField form={form} />
 
           <Button type="submit" className="w-full cursor-pointer">
             تغییر رمزعبور
