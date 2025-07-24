@@ -4,13 +4,15 @@ import { formResolver, type FormValues } from "@/consts/schema/register"
 import { cn } from "@/lib/utils"
 
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { PasswordInput } from "@/components/ui/password-input"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Form } from "@/components/ui/form"
 
 import { LoginByGoogleButton } from "@/components/pages/auth/login-by-google-button"
 import { FormHeader } from "@/components/pages/auth/form-header"
 import { LoginCTA } from "@/components/pages/auth/login-cta"
+import { FullnameFormField } from "@/components/pages/auth/fullname-form-field"
+import { EmailFormField } from "@/components/pages/auth/email-form-field"
+import { PasswordFormField } from "@/components/pages/auth/password-form-field"
+import { ConfirmPasswordFormField } from "@/components/pages/auth/confirm-password-form-field"
 
 export function RegisterForm({
   className,
@@ -31,88 +33,13 @@ export function RegisterForm({
         />
 
         <div className="grid gap-6">
-          <FormField
-            control={form.control}
-            name="fullname"
-            render={({ field }) => (
-              <FormItem className="grid gap-3">
-                <FormLabel htmlFor="fullname">نام و نام‌خانوادگی</FormLabel>
-                <FormControl>
-                  <Input
-                    className="text-right"
-                    id="fullname"
-                    placeholder="علی علوی"
-                    type="text"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <FullnameFormField form={form} />
           
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem className="grid gap-3">
-                <FormLabel htmlFor="email">پست الکترونیک</FormLabel>
-                <FormControl>
-                  <Input
-                    className="text-left"
-                    id="email"
-                    placeholder="johndoe@mail.com"
-                    type="email"
-                    autoComplete="email"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <EmailFormField form={form} />
 
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem className="grid gap-2">
-                <div className="flex justify-between items-center">
-                  <FormLabel htmlFor="password">رمزعبور</FormLabel>
-                </div>
-                <FormControl>
-                  <PasswordInput
-                    className="text-left"
-                    id="password"
-                    placeholder="******"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <PasswordFormField form={form} />
 
-          <FormField
-            control={form.control}
-            name="confirmPassword"
-            render={({ field }) => (
-              <FormItem className="grid gap-2">
-                <div className="flex justify-between items-center">
-                  <FormLabel htmlFor="confirmPassword">تکرار رمزعبور</FormLabel>
-                </div>
-                <FormControl>
-                  <PasswordInput
-                    className="text-left"
-                    id="confirmPassword"
-                    placeholder="******"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <ConfirmPasswordFormField form={form} />
 
           <Button type="submit" className="w-full cursor-pointer">
             ثبت نام

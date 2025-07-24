@@ -4,12 +4,13 @@ import { formResolver, type FormValues } from "@/consts/schema/reset-password"
 import { cn } from "@/lib/utils"
 
 import { Button } from "@/components/ui/button"
-import { PasswordInput } from "@/components/ui/password-input"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Form } from "@/components/ui/form"
 
 import { LoginByGoogleButton } from "@/components/pages/auth/login-by-google-button"
 import { FormHeader } from "@/components/pages/auth/form-header"
 import { RegisterCTA } from "@/components/pages/auth/register-cta"
+import { PasswordFormField } from "@/components/pages/auth/password-form-field"
+import { ConfirmPasswordFormField } from "@/components/pages/auth/confirm-password-form-field"
 
 export function ResetPasswordForm({
   className,
@@ -30,47 +31,9 @@ export function ResetPasswordForm({
         />
 
         <div className="grid gap-6">
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem className="grid gap-2">
-                <div className="flex justify-between items-center">
-                  <FormLabel htmlFor="password">رمزعبور</FormLabel>
-                </div>
-                <FormControl>
-                  <PasswordInput
-                    className="text-left"
-                    id="password"
-                    placeholder="******"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <PasswordFormField form={form} />
 
-          <FormField
-            control={form.control}
-            name="confirmPassword"
-            render={({ field }) => (
-              <FormItem className="grid gap-2">
-                <div className="flex justify-between items-center">
-                  <FormLabel htmlFor="confirmPassword">تکرار رمزعبور</FormLabel>
-                </div>
-                <FormControl>
-                  <PasswordInput
-                    className="text-left"
-                    id="confirmPassword"
-                    placeholder="******"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <ConfirmPasswordFormField form={form} />
 
           <Button type="submit" className="w-full cursor-pointer">
             تغییر رمزعبور

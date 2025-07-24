@@ -1,18 +1,17 @@
 "use client"
 
-import Link from "next/link"
 
 import { formResolver, type FormValues } from "@/consts/schema/login"
 import { cn } from "@/lib/utils"
 
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { PasswordInput } from "@/components/ui/password-input"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Form } from "@/components/ui/form"
 
 import { LoginByGoogleButton } from "@/components/pages/auth/login-by-google-button"
 import { FormHeader } from "@/components/pages/auth/form-header"
 import { RegisterCTA } from "@/components/pages/auth/register-cta"
+import { EmailFormField } from "@/components/pages/auth/email-form-field"
+import { PasswordFormField } from "@/components/pages/auth/password-form-field"
 
 export function LoginForm({
   className,
@@ -33,53 +32,9 @@ export function LoginForm({
         />
 
         <div className="grid gap-6">
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem className="grid gap-3">
-                <FormLabel htmlFor="email">پست الکترونیک</FormLabel>
-                <FormControl>
-                  <Input
-                    className="text-left"
-                    id="email"
-                    placeholder="johndoe@mail.com"
-                    type="email"
-                    autoComplete="email"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <EmailFormField form={form} />
 
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem className="grid gap-2">
-                <div className="flex justify-between items-center">
-                  <FormLabel htmlFor="password">رمزعبور</FormLabel>
-                  <Link
-                    href="#"
-                    className="ml-auto rtl:mr-auto rtl:ml-0 text-sm underline-offset-4 hover:underline"
-                  >
-                    فراموش کردی؟
-                  </Link>
-                </div>
-                <FormControl>
-                  <PasswordInput
-                    className="text-left"
-                    id="password"
-                    placeholder="******"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <PasswordFormField form={form} />
 
           <Button type="submit" className="w-full cursor-pointer">
             ورود

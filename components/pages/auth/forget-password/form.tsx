@@ -4,12 +4,12 @@ import { formResolver, type FormValues } from "@/consts/schema/forget-password"
 import { cn } from "@/lib/utils"
 
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Form } from "@/components/ui/form"
 
 import { LoginByGoogleButton } from "@/components/pages/auth/login-by-google-button"
 import { FormHeader } from "@/components/pages/auth/form-header"
 import { RegisterCTA } from "@/components/pages/auth/register-cta"
+import { EmailFormField } from "@/components/pages/auth/email-form-field"
 
 export function ForgetPasswordForm({
   className,
@@ -30,26 +30,7 @@ export function ForgetPasswordForm({
         />
 
         <div className="grid gap-6">
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem className="grid gap-3">
-                <FormLabel htmlFor="email">پست الکترونیک</FormLabel>
-                <FormControl>
-                  <Input
-                    className="text-left"
-                    id="email"
-                    placeholder="johndoe@mail.com"
-                    type="email"
-                    autoComplete="email"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <EmailFormField form={form} />
 
           <Button type="submit" className="w-full cursor-pointer">
             ارسال

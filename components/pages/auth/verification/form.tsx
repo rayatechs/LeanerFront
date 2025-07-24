@@ -1,17 +1,15 @@
 "use client"
 
-import Link from "next/link"
-
 import { formResolver, type FormValues } from "@/consts/schema/verification"
 import { cn } from "@/lib/utils"
 
 import { Button } from "@/components/ui/button"
-import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Form } from "@/components/ui/form"
 
 import { LoginByGoogleButton } from "@/components/pages/auth/login-by-google-button"
 import { FormHeader } from "@/components/pages/auth/form-header"
 import { RegisterCTA } from "@/components/pages/auth/register-cta"
+import { OTPFormField } from "@/components/pages/auth/otp-form-field"
 
 export function VerificationForm({
   className,
@@ -32,46 +30,7 @@ export function VerificationForm({
         />
 
         <div className="grid gap-6">
-          <FormField
-            control={form.control}
-            name="otp"
-            render={({ field }) => (
-              <FormItem className="grid gap-3">
-                <div className="flex justify-between items-center">
-                  <FormLabel htmlFor="otp">کد یکبار مصرف</FormLabel>
-                  <Link
-                    href="#"
-                    className="ml-auto rtl:mr-auto rtl:ml-0 text-sm underline-offset-4 hover:underline"
-                  >
-                    ارسال مجدد
-                  </Link>
-                </div>
-                <FormControl>
-                  <InputOTP containerClassName="justify-between" id="otp"  maxLength={6} {...field}>
-                    <InputOTPGroup>
-                      <InputOTPSlot index={0} />
-                    </InputOTPGroup>
-                    <InputOTPGroup>
-                      <InputOTPSlot index={1} />
-                    </InputOTPGroup>
-                    <InputOTPGroup>
-                      <InputOTPSlot index={2} />
-                    </InputOTPGroup>
-                    <InputOTPGroup>
-                      <InputOTPSlot index={3} />
-                    </InputOTPGroup>
-                    <InputOTPGroup>
-                      <InputOTPSlot index={4} />
-                    </InputOTPGroup>
-                    <InputOTPGroup>
-                      <InputOTPSlot index={5} />
-                    </InputOTPGroup>
-                  </InputOTP>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <OTPFormField form={form} />
 
           <Button type="submit" className="w-full cursor-pointer">
             تایید
