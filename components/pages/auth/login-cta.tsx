@@ -10,7 +10,7 @@ export function LoginCTA({
     return (
       <div className={cn("text-center text-sm", className)} {...props}>
         حساب کاربری دارید؟{" "}
-        <Link href="#" className="underline underline-offset-4">
+        <Link href="/login" className="underline underline-offset-4">
           وارد
         </Link>
         {" "} شوید!

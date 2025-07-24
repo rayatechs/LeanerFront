@@ -10,7 +10,7 @@ export function RegisterCTA({
     return (
       <div className={cn("text-center text-sm", className)} {...props}>
         حساب کاربری ندارید؟{" "}
-        <Link href="#" className="underline underline-offset-4">
+        <Link href="/register" className="underline underline-offset-4">
           ثبت نام
         </Link>
         {" "} کنید!
