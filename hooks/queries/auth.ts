@@ -1,6 +1,6 @@
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
 import { IRequest, IValidationError, IResponse } from "@/interfaces";
-import { authRegister, authVerification } from "@/api/auth";
+import { authRegister, authResendOtp, authVerification } from "@/api/auth";
 import UserResource from "@/interfaces/resources/user";
 import AuthResource from "@/interfaces/resources/auth";
 import { FormRequest as RegisterFormRequest } from "@/consts/schema/auth/register";
@@ -23,5 +23,15 @@ export const useAuthVerification = (): UseMutationResult<
 > => {
   return useMutation({
     mutationFn: (data) => authVerification(data),
+  });
+};
+
+export const useAuthResendOtp = (): UseMutationResult<
+  IResponse<any>,
+  IValidationError<any>,
+  IRequest<{ email: string }>
+> => {
+  return useMutation({
+    mutationFn: (data) => authResendOtp(data),
   });
 };

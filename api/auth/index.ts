@@ -1,6 +1,10 @@
 import instance from "@/api/instance";
 import { IRequest, IResponse } from "@/interfaces";
-import { AUTH_REGISTER_URL, AUTH_VERIFICATION_URL } from "./url";
+import {
+  AUTH_REGISTER_URL,
+  AUTH_RESEND_OTP_URL,
+  AUTH_VERIFICATION_URL,
+} from "./url";
 import UserResource from "@/interfaces/resources/user";
 import AuthResource from "@/interfaces/resources/auth";
 import { FormRequest as RegisterFormRequest } from "@/consts/schema/auth/register";
@@ -21,3 +25,6 @@ export const authVerification = (request: IRequest<VerificaitonFormRequest>) =>
     AUTH_VERIFICATION_URL,
     request
   );
+
+export const authResendOtp = (request: IRequest<{ email: string }>) =>
+  apiPost<{ email: string }, any>(AUTH_RESEND_OTP_URL, request);
