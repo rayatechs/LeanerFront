@@ -3,7 +3,7 @@ import { useForm, type UseFormReturn } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 
 const FormSchema = z.object({
-  fullname: z
+  full_name: z
     .string('نام و نام‌خانوادگی را وارد کنید')
     .regex(/^[a-zA-Z\u0600-\u06FF]+ [a-zA-Z\u0600-\u06FF]+(?: [a-zA-Z\u0600-\u06FF]+)*$/, {
       message: 'نام و نام‌خانوادگی را به درستی وارد کنید',
@@ -19,25 +19,25 @@ const FormSchema = z.object({
       message: 'رمزعبور باید شامل حداقل یک حرف، یک عدد و یک نماد خاص باشد',
     }),
 
-  passwordConfirmation: z.string('تکرار رمزعبور را وارد کنید')
-}).refine((data) => data.password === data.passwordConfirmation, {
+  password_confirmation: z.string('تکرار رمزعبور را وارد کنید')
+}).refine((data) => data.password === data.password_confirmation, {
   message: 'رمزعبور و تکرار آن باید یکسان باشند',
-  path: ["passwordConfirmation"],
+  path: ["password_confirmation"],
 })
 
-type FormValues = z.infer<typeof FormSchema>
+type FormRequest = z.infer<typeof FormSchema>
 
-function formResolver(): UseFormReturn<FormValues> {
-  return useForm<FormValues>({
+function formResolver(): UseFormReturn<FormRequest> {
+  return useForm<FormRequest>({
       resolver: zodResolver(FormSchema),
       mode: "onChange",
       defaultValues: {
-          fullname: '',
-          email: '',
-          password: '',
-          passwordConfirmation: '',
+          full_name: 'حسین نودهی',
+          email: 'nodehi7813@gmail.com',
+          password: 'Hossein@1378',
+          password_confirmation: 'Hossein@1378',
       },
   })
 }
 
-export { formResolver, FormSchema, type FormValues }
+export { formResolver, FormSchema, type FormRequest }

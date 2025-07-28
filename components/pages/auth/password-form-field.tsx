@@ -19,7 +19,7 @@ export function PasswordFormField<T extends WithPassword>({ form }: { form: UseF
           <div className="flex justify-between items-center">
             <FormLabel htmlFor="password">رمزعبور</FormLabel>
             <Link
-              href="#"
+              href="/forget-password"
               className="ml-auto rtl:mr-auto rtl:ml-0 text-sm underline-offset-4 hover:underline"
             >
               فراموش کردی؟
