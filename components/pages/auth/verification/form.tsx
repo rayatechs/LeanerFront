@@ -1,6 +1,8 @@
 "use client"
 
-import { formResolver, type FormValues } from "@/consts/schema/verification"
+import { useRouter } from "next/navigation"
+
+import { formResolver, type FormRequest } from "@/consts/schema/auth/verification"
 import { cn } from "@/lib/utils"
 
 import { Button } from "@/components/ui/button"
@@ -11,15 +13,21 @@ import { FormHeader } from "@/components/pages/auth/form-header"
 import { RegisterCTA } from "@/components/pages/auth/register-cta"
 import { OTPFormField } from "@/components/pages/auth/otp-form-field"
 import { Separator } from "@/components/pages/auth/separator"
+import { useAuthVerification } from "@/hooks/queries/auth"
 
 export function VerificationForm({
   className,
   ...props
 }: React.ComponentProps<"form">) {
+  const router = useRouter()
   const form = formResolver()
 
-  async function onSubmit(values: FormValues) {
-    console.log(values)    
+  const { mutateAsync, isPending } = useAuthVerification()
+
+  async function onSubmit(request: FormRequest) {
+    mutateAsync({ data: request }).then(() => {     
+      router.push(`/login`)
+    })
   }
 
   return (
@@ -33,7 +41,7 @@ export function VerificationForm({
         <div className="grid gap-6">
           <OTPFormField form={form} />
 
-          <Button type="submit" className="w-full cursor-pointer">
+          <Button type="submit" className="w-full cursor-pointer" loading={isPending}>
             تایید
           </Button>
 

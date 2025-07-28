@@ -1,13 +1,23 @@
-import { IRequest, IResponse } from "@/interfaces";
-import { FormRequest } from "@/consts/schema/auth/register";
-import { AUTH_REGISTER_URL } from "./url";
-import UserResource from "@/interfaces/resources/user";
 import instance from "@/api/instance";
+import { IRequest, IResponse } from "@/interfaces";
+import { AUTH_REGISTER_URL, AUTH_VERIFICATION_URL } from "./url";
+import UserResource from "@/interfaces/resources/user";
+import AuthResource from "@/interfaces/resources/auth";
+import { FormRequest as RegisterFormRequest } from "@/consts/schema/auth/register";
+import { FormRequest as VerificaitonFormRequest } from "@/consts/schema/auth/verification";
 
-export const authRegister = async (
-  request: IRequest<FormRequest>
-): Promise<IResponse<UserResource>> => {
-  return await instance
-    .post(AUTH_REGISTER_URL, request.data)
-    .then((res) => res.data);
+const apiPost = async <TRequest, TResponse>(
+  url: string,
+  request: IRequest<TRequest>
+): Promise<IResponse<TResponse>> => {
+  return await instance.post(url, request.data).then((res) => res.data);
 };
+
+export const authRegister = (request: IRequest<RegisterFormRequest>) =>
+  apiPost<RegisterFormRequest, UserResource>(AUTH_REGISTER_URL, request);
+
+export const authVerification = (request: IRequest<VerificaitonFormRequest>) =>
+  apiPost<VerificaitonFormRequest, AuthResource>(
+    AUTH_VERIFICATION_URL,
+    request
+  );
