@@ -1,7 +1,6 @@
 "use client"
 
-
-import { formResolver, type FormValues } from "@/consts/schema/login"
+import { formResolver, type FormRequest } from "@/consts/schema/auth/login"
 import { cn } from "@/lib/utils"
 
 import { Button } from "@/components/ui/button"
@@ -13,15 +12,28 @@ import { RegisterCTA } from "@/components/pages/auth/register-cta"
 import { EmailFormField } from "@/components/pages/auth/email-form-field"
 import { PasswordFormField } from "@/components/pages/auth/password-form-field"
 import { Separator } from "@/components/pages/auth/separator"
+import { useAuthLogin } from "@/hooks/queries/auth"
+import { useRouter } from "next/navigation"
+import { AxiosError } from "axios"
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"form">) {
+  const router = useRouter()
   const form = formResolver()
 
-  async function onSubmit(values: FormValues) {
-    console.log(values)
+  const { mutateAsync, isPending } = useAuthLogin()
+
+
+  async function onSubmit(request: FormRequest) {
+    mutateAsync({ data: request }).then(() => {     
+      router.push('/dashboard')
+    }).catch((err: AxiosError) => {
+      if (err.status === 403) {
+        router.push(`/verification?email=${request.email}`)
+      }
+    })
   }
 
   return (
@@ -37,7 +49,7 @@ export function LoginForm({
 
           <PasswordFormField form={form} />
 
-          <Button type="submit" className="w-full cursor-pointer">
+          <Button type="submit" className="w-full cursor-pointer" loading={isPending}>
             ورود
           </Button>
 

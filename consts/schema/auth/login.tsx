@@ -14,17 +14,17 @@ const FormSchema = z.object({
     }),
 })
 
-type FormValues = z.infer<typeof FormSchema>
+type FormRequest = z.infer<typeof FormSchema>
 
-function formResolver(): UseFormReturn<FormValues> {
-  return useForm<FormValues>({
+function formResolver(): UseFormReturn<FormRequest> {
+  return useForm<FormRequest>({
     resolver: zodResolver(FormSchema),
     mode: "onChange",
     defaultValues: {
-        email: '',
-        password: '',
+        email: 'nodehi7813@gmail.com',
+        password: 'password@123',
     },
   })
 }
 
-export { formResolver, FormSchema, type FormValues }
+export { formResolver, FormSchema, type FormRequest }
