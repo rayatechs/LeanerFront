@@ -1,6 +1,6 @@
 "use client"
 
-import { formResolver, type FormValues } from "@/consts/schema/forget-password"
+import { formResolver, type FormRequest } from "@/consts/schema/auth/forget-password"
 import { cn } from "@/lib/utils"
 
 import { Button } from "@/components/ui/button"
@@ -11,15 +11,24 @@ import { FormHeader } from "@/components/pages/auth/form-header"
 import { RegisterCTA } from "@/components/pages/auth/register-cta"
 import { EmailFormField } from "@/components/pages/auth/email-form-field"
 import { Separator } from "@/components/pages/auth/separator"
+import { useAuthForgetPassword } from "@/hooks/queries/auth"
+import { useRouter } from "next/navigation"
+import { useState } from "react"
+import Link from "next/link"
 
 export function ForgetPasswordForm({
   className,
   ...props
 }: React.ComponentProps<"form">) {
+  const [isActive, setIsActive] = useState(false);
   const form = formResolver()
 
-  async function onSubmit(values: FormValues) {
-    console.log(values)
+  const { mutateAsync, isPending } = useAuthForgetPassword()
+
+  async function onSubmit(request: FormRequest) {
+    mutateAsync({ data: request }).then(() => {     
+      setIsActive(true)
+    })
   }
 
   return (
@@ -31,11 +40,26 @@ export function ForgetPasswordForm({
         />
 
         <div className="grid gap-6">
-          <EmailFormField form={form} />
 
-          <Button type="submit" className="w-full cursor-pointer">
-            ارسال
-          </Button>
+          {
+            isActive ? (
+              <div className="flex flex-col items-center gap-2 text-center border border-dashed rounded p-4">
+                <p className="text-sm">لطفا ایمیل خود را وارد کنید تا لینک بازیابی برای شما ارسال شود.</p>
+                <Link href="/login" className="text-primary hover:underline">
+                  بازگشت به صفحه ورود
+                </Link>
+              </div>
+            ) : (
+              <>
+                <EmailFormField form={form} />
+
+                <Button type="submit" className="w-full cursor-pointer" loading={isPending}>
+                  ارسال
+                </Button>
+              </>
+            )
+          }
+          
 
           <Separator />
 

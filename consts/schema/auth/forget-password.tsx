@@ -7,10 +7,10 @@ const FormSchema = z.object({
     .email('پست الکترونیک را به درستی وارد کنید')
 })
 
-type FormValues = z.infer<typeof FormSchema>
+type FormRequest = z.infer<typeof FormSchema>
 
-function formResolver(): UseFormReturn<FormValues> {
-  return useForm<FormValues>({
+function formResolver(): UseFormReturn<FormRequest> {
+  return useForm<FormRequest>({
     resolver: zodResolver(FormSchema),
     mode: "onChange",
     defaultValues: {
@@ -19,4 +19,4 @@ function formResolver(): UseFormReturn<FormValues> {
   })
 }
 
-export { formResolver, FormSchema, type FormValues }
+export { formResolver, FormSchema, type FormRequest }
