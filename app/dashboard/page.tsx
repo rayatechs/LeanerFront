@@ -1,12 +1,9 @@
-import { AppSidebar } from "@/components/app-sidebar"
-import { SiteHeader } from "@/components/site-header"
-import {
-  SidebarInset,
-  SidebarProvider
-} from "@/components/ui/sidebar"
 import { Hourglass, Plus } from "lucide-react"
-import { SearchForm } from "@/components/search-form"
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 import { Button } from "@/components/ui/button"
+import { AppSidebar } from "@/components/pages/dashboard/app-sidebar"
+import { SiteHeader } from "@/components/pages/dashboard/site-header"
+import { SearchForm } from "@/components/pages/dashboard/search-form"
 
 export default function Page() {
   return (

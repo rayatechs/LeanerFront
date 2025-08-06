@@ -28,7 +28,7 @@ import {
   SidebarMenuSubItem,
   useSidebar,
 } from "@/components/ui/sidebar"
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible"
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "../../ui/collapsible"
 
 export function NavProjects({
   projects,

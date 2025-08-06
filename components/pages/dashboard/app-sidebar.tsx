@@ -12,11 +12,11 @@ import {
   Ellipsis
 } from "lucide-react"
 
-import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
-import { NavSecondary } from "@/components/nav-secondary"
-import { NavUser } from "@/components/nav-user"
-import { TeamSwitcher } from "@/components/team-switcher"
+import { NavMain } from "@/components/pages/dashboard/nav-main"
+import { NavProjects } from "@/components/pages/dashboard/nav-projects"
+import { NavSecondary } from "@/components/pages/dashboard/nav-secondary"
+import { NavUser } from "@/components/pages/dashboard/nav-user"
+import { TeamSwitcher } from "@/components/pages/dashboard/team-switcher"
 import {
   Sidebar,
   SidebarContent,
