@@ -1,5 +1,4 @@
 import axios from "axios";
-import { getToken } from "@/lib/auth";
 
 const instance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
@@ -7,7 +6,7 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use(async (config) => {
-  config.headers["Authorization"] = `Bearer ${await getToken()}`;
+  config.headers["Authorization"] = `Bearer`;
 
   return config;
 });
