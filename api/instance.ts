@@ -1,4 +1,7 @@
+import { getToken } from "@/lib/auth";
+import { deleteCookie } from "@/lib/cookie";
 import axios from "axios";
+import { toast } from "sonner";
 
 const instance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
@@ -6,35 +9,33 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use(async (config) => {
-  config.headers["Authorization"] = `Bearer`;
-
+  config.headers["Authorization"]  = `Bearer ${await getToken()}`;
   return config;
 });
 
 instance.interceptors.response.use(
   (response) => {
+    if (response.data?.message) {
+      toast(response.data.message, { position: "top-center" });
+    }
     return response;
   },
   (error) => {
     if (error.response.status === 401 || error.response.status === 403) {
-      // logout
-    } else if (error.response.status >= 400 && error.response.status <= 502) {
-      // For errors of requests with Blob response type
-      if (error.response.data instanceof Blob) {
-        error.response.data.text().then((data) => {
-          let json;
-
-          try {
-            json = JSON.parse(data);
-          } catch (e) {}
-
-          // show toast error
-        });
-      } else {
-        // show toast error
-      }
+      deleteCookie('token')
+      window.location.href = "/login";
+      toast(error.response.data?.message ||
+        error.message ||
+        "An error occurred", {
+        description: Object.values(error.response.data?.errors || {}).flat().join("\n"),
+      })
+    } else if (error.response.status >= 400 && error.response.status <= 502) {    
+      toast(error.response.data?.message ||
+        error.message ||
+        "An error occurred", {
+        description: Object.values(error.response.data?.errors || {}).flat().join("\n"),
+      })
     }
-
     return Promise.reject(error);
   }
 );

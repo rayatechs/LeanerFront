@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Vazirmatn } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/app/theme-provider"
+import { ThemeProvider } from "@/app/theme-provider";
 import ClientQueryProvider from "./query-provider";
+import { Toaster } from "@/components/ui/sonner"; // <-- Import Toaster
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,6 +42,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
+            <Toaster /> {/* <-- Add Toaster here */}
             {children}
           </ThemeProvider>
         </ClientQueryProvider>
