@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 
 import {
   BadgeCheck,
@@ -11,14 +11,10 @@ import {
   Sparkles,
   Moon,
   Sun,
-  Palette
-} from "lucide-react"
+  Palette,
+} from "lucide-react";
 
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -31,29 +27,30 @@ import {
   DropdownMenuSub,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 
-import { useTheme } from "next-themes"
-import { useThemeColor } from "@/hooks/use-theme-color"
+import { useTheme } from "next-themes";
+import { useThemeColor } from "@/hooks/use-theme-color";
+import Link from "next/link";
 
 export function NavUser({
   user,
 }: {
   user: {
-    name: string
-    email: string
-    avatar: string
-  }
+    name: string;
+    email: string;
+    avatar: string;
+  };
 }) {
-  const { isMobile } = useSidebar()
-  const { theme, setTheme } = useTheme()
-  const { themeColor, setThemeColor } = useThemeColor()
+  const { isMobile } = useSidebar();
+  const { theme, setTheme } = useTheme();
+  const { themeColor, setThemeColor } = useThemeColor();
 
   return (
     <SidebarMenu>
@@ -102,10 +99,12 @@ export function NavUser({
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <BadgeCheck />
-                حساب کاربری
-              </DropdownMenuItem>
+              <Link href="/settings/profile">
+                <DropdownMenuItem className="cursor-pointer">
+                  <BadgeCheck />
+                  حساب کاربری
+                </DropdownMenuItem>
+              </Link>
               <DropdownMenuItem>
                 <CreditCard />
                 صورت حساب
@@ -120,7 +119,10 @@ export function NavUser({
                   ظاهر
                 </DropdownMenuSubTrigger>
                 <DropdownMenuContent className="w-56 rtl:dir-rtl" side="left">
-                  <DropdownMenuRadioGroup value={theme} onValueChange={setTheme}>
+                  <DropdownMenuRadioGroup
+                    value={theme}
+                    onValueChange={setTheme}
+                  >
                     <DropdownMenuRadioItem value="dark">
                       <Moon />
                       تم دارک
@@ -131,7 +133,10 @@ export function NavUser({
                     </DropdownMenuRadioItem>
                   </DropdownMenuRadioGroup>
                   <DropdownMenuSeparator />
-                  <DropdownMenuRadioGroup value={themeColor} onValueChange={setThemeColor}>
+                  <DropdownMenuRadioGroup
+                    value={themeColor}
+                    onValueChange={setThemeColor}
+                  >
                     <DropdownMenuRadioItem value="default">
                       <span className="w-4 h-4 rounded bg-theme-default-light dark:bg-theme-default-dark"></span>
                       پیشفرض
@@ -177,5 +182,5 @@ export function NavUser({
         </DropdownMenu>
       </SidebarMenuItem>
     </SidebarMenu>
-  )
+  );
 }
