@@ -1,4 +1,5 @@
 import { GalleryVerticalEnd } from "lucide-react"
+import Image from "next/image";
 
 export default function AuthLayout({
   children,
@@ -25,7 +26,9 @@ export default function AuthLayout({
       </div>
       
       <div className="bg-muted relative hidden lg:block col-span-2 m-6 rounded-lg">
-        <img
+        <Image
+          width={1920}
+          height={1080}
           src="https://picsum.photos/1920/1080?grayscale"
           alt="Image"
           className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale rounded-lg"

@@ -32,7 +32,7 @@ export default function Page() {
         
         <div className="flex flex-row w-full h-full">
           <AppSidebar side="right" collapsible="icon" />
-          <SidebarInset className="fixed inset-y-0 top-(--header-height) h-[calc(100svh-var(--header-height)-calc(var(--spacing) * 2))]! md:w-[calc(100%-var(--sidebar-width))] w-full left-0 overflow-y-auto peer-data-[state=collapsed]:w-[calc(100%-var(--sidebar-width-icon)-20px)]! transition-[left,right,width] duration-200 ease-linear">
+          <SidebarInset className="fixed inset-y-0 top-(--header-height) h-[calc(100svh-var(--header-height)-calc(var(--spacing)*2))]! md:w-[calc(100%-var(--sidebar-width))] w-full left-0 overflow-y-auto peer-data-[state=collapsed]:w-[calc(100%-var(--sidebar-width-icon)-20px)]! transition-[left,right,width] duration-200 ease-linear">
             <SiteHeader />
             <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
               <div className="grid auto-rows-min gap-4 md:grid-cols-3">

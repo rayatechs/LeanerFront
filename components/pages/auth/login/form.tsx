@@ -15,6 +15,7 @@ import { Separator } from "@/components/pages/auth/separator"
 import { useAuthLogin } from "@/hooks/queries/auth"
 import { useRouter } from "next/navigation"
 import { AxiosError } from "axios"
+import { setToken } from "@/lib/auth"
 
 export function LoginForm({
   className,
@@ -27,7 +28,8 @@ export function LoginForm({
 
 
   async function onSubmit(request: FormRequest) {
-    mutateAsync({ data: request }).then(() => {     
+    mutateAsync({ data: request }).then((res) => {
+      setToken(res.data.access_token)
       router.push('/dashboard')
     }).catch((err: AxiosError) => {
       if (err.status === 403) {

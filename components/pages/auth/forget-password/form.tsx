@@ -12,7 +12,6 @@ import { RegisterCTA } from "@/components/pages/auth/register-cta"
 import { EmailFormField } from "@/components/pages/auth/email-form-field"
 import { Separator } from "@/components/pages/auth/separator"
 import { useAuthForgetPassword } from "@/hooks/queries/auth"
-import { useRouter } from "next/navigation"
 import { useState } from "react"
 import Link from "next/link"
 

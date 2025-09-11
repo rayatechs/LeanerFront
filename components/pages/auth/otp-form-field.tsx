@@ -1,21 +1,21 @@
 "use client"
 
 import { type UseFormReturn, type Path } from "react-hook-form"
-
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp"
 import { Button } from "@/components/ui/button"
 import { useSearchParams } from "next/navigation"
 import { useAuthResendOtp } from "@/hooks/queries/auth"
 import { useEffect, useState } from "react"
+import { toast } from "sonner"
 
 type WithOTP = { otp: string }
 
 export function OTPFormField<T extends WithOTP>({ form }: { form: UseFormReturn<T> }) {
-  const [searchParams, _] = useSearchParams()  
+  const [searchParams] = useSearchParams()  
   const { mutateAsync } = useAuthResendOtp()
 
-  const [timeLeft, setTimeLeft] = useState(120); // 2 minutes in seconds
+  const [timeLeft, setTimeLeft] = useState(120);
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
@@ -47,10 +47,11 @@ export function OTPFormField<T extends WithOTP>({ form }: { form: UseFormReturn<
     return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
   };
   
-  async function resendOtp() {
-    mutateAsync({ data: { email: searchParams[1]} }).then(() => {     
+  async function resendOtp(form: UseFormReturn<T>) {
+    mutateAsync({ data: { email: searchParams[1]} }).then((res) => { 
       startTimer();
-      // show toast
+      form.resetField("otp" as Path<T>);
+      toast.success(res.message)
     })
   }
 
@@ -64,7 +65,7 @@ export function OTPFormField<T extends WithOTP>({ form }: { form: UseFormReturn<
             <FormLabel htmlFor="otp">کد یکبار مصرف</FormLabel>
             <Button
               type="button"
-              onClick={resendOtp}
+              onClick={() => resendOtp(form)}
               variant={"link"}
               className="ml-auto rtl:mr-auto rtl:ml-0 text-sm underline-offset-4 hover:underline p-0 cursor-pointer"
               disabled={isActive}

@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
+  console.log(request);
+
   return NextResponse.json({
     data: {
       user: {
@@ -21,13 +23,4 @@ export async function POST(request: NextRequest) {
       access_token: "string",
     },
   });
-
-  return NextResponse.json(
-    {
-      message: "لطفا ابتدا ایمیل خود را تایید کنید",
-    },
-    {
-      status: 403,
-    }
-  );
 }

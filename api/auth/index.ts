@@ -1,25 +1,19 @@
-import instance from "@/api/instance";
-import { IRequest, IResponse } from "@/interfaces";
+import { IRequest } from "@/interfaces";
 import {
   AUHT_LOGIN_URL,
   AUTH_FORGET_PASSWORD_URL,
   AUTH_REGISTER_URL,
   AUTH_RESEND_OTP_URL,
   AUTH_VERIFICATION_URL,
+  AUTH_Logout_URL
 } from "./url";
+import { apiPost } from "../request";
 import UserResource from "@/interfaces/resources/user";
 import AuthResource from "@/interfaces/resources/auth";
 import { FormRequest as RegisterFormRequest } from "@/consts/schema/auth/register";
 import { FormRequest as VerificaitonFormRequest } from "@/consts/schema/auth/verification";
 import { FormRequest as LoginFormRequest } from "@/consts/schema/auth/login";
 import { FormRequest as ForgetPasswordFromRequest } from "@/consts/schema/auth/forget-password";
-
-const apiPost = async <TRequest, TResponse>(
-  url: string,
-  request: IRequest<TRequest>
-): Promise<IResponse<TResponse>> => {
-  return await instance.post(url, request.data).then((res) => res.data);
-};
 
 export const authRegister = (request: IRequest<RegisterFormRequest>) =>
   apiPost<RegisterFormRequest, UserResource>(AUTH_REGISTER_URL, request);
@@ -43,3 +37,6 @@ export const authForgetPassword = (
     AUTH_FORGET_PASSWORD_URL,
     request
   );
+
+export const authLogout = (request: IRequest<any>) =>
+  apiPost<any, { success: boolean }>(AUTH_Logout_URL, request);
