@@ -11,7 +11,7 @@ import { FormHeader } from "@/components/pages/auth/form-header"
 import { RegisterCTA } from "@/components/pages/auth/register-cta"
 import { EmailFormField } from "@/components/pages/auth/email-form-field"
 import { Separator } from "@/components/pages/auth/separator"
-import { useAuthForgetPassword } from "@/hooks/queries/auth"
+import { useAuthForgetPassword } from "@/api/auth/auth"
 import { useState } from "react"
 import Link from "next/link"
 

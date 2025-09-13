@@ -16,7 +16,7 @@ import { LoginCTA } from "@/components/pages/auth/login-cta"
 import { PasswordConfirmationFormField } from "@/components/pages/auth/password-confirmation-form-field"
 import { PasswordFormField } from "@/components/pages/auth/password-form-field"
 import { Separator } from "@/components/pages/auth/separator"
-import { useAuthRegister } from "@/hooks/queries/auth"
+import { useAuthRegister } from "@/api/auth/auth"
 
 export function RegisterForm({
   className,

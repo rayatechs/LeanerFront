@@ -5,7 +5,7 @@ import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/comp
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp"
 import { Button } from "@/components/ui/button"
 import { useSearchParams } from "next/navigation"
-import { useAuthResendOtp } from "@/hooks/queries/auth"
+import { useAuthResendOtp } from "@/api/auth/auth"
 import { useEffect, useState } from "react"
 import { toast } from "sonner"
 

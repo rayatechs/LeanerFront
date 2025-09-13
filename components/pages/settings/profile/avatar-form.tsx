@@ -6,12 +6,11 @@ import { FormRequest, formResolver } from "@/consts/schema/settings/avatar";
 import { AvatarFormField } from "./avatar-form-field";
 import {
   Card,
-  CardAction,
   CardContent,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { useProfileAvatarUpdate } from "@/hooks/queries/profile";
+import { useProfileAvatarUpdate } from "@/api/profile/query";
 
 export function AvatarForm({
   className,

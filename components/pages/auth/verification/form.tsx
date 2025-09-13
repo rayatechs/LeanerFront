@@ -16,7 +16,7 @@ import { FormHeader } from "@/components/pages/auth/form-header";
 import { RegisterCTA } from "@/components/pages/auth/register-cta";
 import { OTPFormField } from "@/components/pages/auth/otp-form-field";
 import { Separator } from "@/components/pages/auth/separator";
-import { useAuthVerification } from "@/hooks/queries/auth";
+import { useAuthVerification } from "@/api/auth/auth";
 
 export function VerificationForm({
   className,
