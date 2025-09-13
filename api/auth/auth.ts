@@ -1,5 +1,5 @@
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
-import { IRequest, IValidationError, IResponse } from "@/interfaces";
+import { IRequest, IValidationError, IResponse } from "@/api/resource";
 import {
   authForgetPassword,
   authLogin,
@@ -7,8 +7,7 @@ import {
   authResendOtp,
   authVerification,
 } from "@/api/auth";
-import UserResource from "@/interfaces/resources/user";
-import AuthResource from "@/interfaces/resources/auth";
+import { AuthResource, UserResource } from "./resource";
 import { FormRequest as RegisterFormRequest } from "@/consts/schema/auth/register";
 import { FormRequest as VerificaitonFormRequest } from "@/consts/schema/auth/verification";
 import { FormRequest as LoginFormRequest } from "@/consts/schema/auth/login";

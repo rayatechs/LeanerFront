@@ -1,5 +1,5 @@
 import instance from "./instance";
-import { IRequest, IResponse } from "@/interfaces";
+import { IRequest, IResponse } from "./resource";
 
 export const apiPost = async <TRequest, TResponse>(
   url: string,

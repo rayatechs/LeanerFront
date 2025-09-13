@@ -1,4 +1,4 @@
-import { IRequest } from "@/interfaces";
+import { IRequest } from "@/api/resource";
 import {
   AUHT_LOGIN_URL,
   AUTH_FORGET_PASSWORD_URL,
@@ -8,8 +8,7 @@ import {
   AUTH_Logout_URL
 } from "./url";
 import { apiPost } from "../request";
-import UserResource from "@/interfaces/resources/user";
-import AuthResource from "@/interfaces/resources/auth";
+import { AuthResource, UserResource } from "./resource";
 import { FormRequest as RegisterFormRequest } from "@/consts/schema/auth/register";
 import { FormRequest as VerificaitonFormRequest } from "@/consts/schema/auth/verification";
 import { FormRequest as LoginFormRequest } from "@/consts/schema/auth/login";
