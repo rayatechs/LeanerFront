@@ -9,10 +9,10 @@ const FormSchema = z.object({
     .regex(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/, {
       message: 'رمزعبور باید شامل حداقل یک حرف، یک عدد و یک نماد خاص باشد',
     }),
-  passwordConfirmation: z.string('تکرار رمزعبور را وارد کنید')
-}).refine((data) => data.password === data.passwordConfirmation, {
+  password_confirmation: z.string('تکرار رمزعبور را وارد کنید')
+}).refine((data) => data.password === data.password_confirmation, {
   message: 'رمزعبور و تکرار آن باید یکسان باشند',
-  path: ["passwordConfirmation"],
+  path: ["password_confirmation"],
 })
 
 type FormValues = z.infer<typeof FormSchema>
@@ -23,7 +23,7 @@ function formResolver(): UseFormReturn<FormValues> {
     mode: "onChange",
     defaultValues: {
       password: '',
-      passwordConfirmation: '',
+      password_confirmation: '',
     },
   })
 }

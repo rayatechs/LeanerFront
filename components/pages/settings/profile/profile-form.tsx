@@ -24,10 +24,10 @@ export function ProfileForm({
   className,
   ...props
 }: React.ComponentProps<"form">) {
-  const { data: user, isLoading } = useProfileUser();
+  const { data: user } = useProfileUser();
   const form = formResolver();
   
-  const { mutateAsync, isPending } = useUpdateProfileUser()
+  const { mutateAsync } = useUpdateProfileUser()
 
   useEffect(() => {
     if (user) {

@@ -17,7 +17,7 @@ export function AvatarForm({
   ...props
 }: React.ComponentProps<"form">) {
   const form = formResolver();
-  const { mutateAsync, isPending } = useProfileAvatarUpdate()
+  const { mutateAsync } = useProfileAvatarUpdate()
 
   async function onSubmit(request: FormRequest) {
     mutateAsync({ data: request }).then(() => {
