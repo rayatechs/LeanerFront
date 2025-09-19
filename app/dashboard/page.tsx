@@ -1,9 +1,9 @@
 import { Hourglass, Plus } from "lucide-react"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
-import { Button } from "@/components/ui/button"
 import { AppSidebar } from "@/components/pages/dashboard/app-sidebar"
 import { SiteHeader } from "@/components/pages/dashboard/site-header"
 import { SearchForm } from "@/components/pages/dashboard/search-form"
+import NewButton from "@/components/pages/dashboard/new-button"
 
 export default function Page() {
   return (
@@ -17,11 +17,10 @@ export default function Page() {
               </span>
             </div>
             <div className="md:w-1/3 flex-1 md:flex-auto">
-              <div className="flex w-full max-w-sm items-center mx-auto">
+              <div className="flex w-full max-w-sm items-center mx-auto space-x-2">
                 <SearchForm className="flex-1" />
-                <Button className="p-0 rounded-r-none h-7 cursor-pointer" variant="outline">
-                  <Plus />
-                </Button>
+
+                <NewButton />
               </div>
             </div>
             <div className="w-1/3 hidden md:block">
