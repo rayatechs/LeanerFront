@@ -68,7 +68,12 @@ export function FormStepOne({
                   name={name}
                   ref={ref}
                   onBlur={onBlur}
-                  onChange={(e) => onChange(e.target.files?.[0] ?? null)}
+                  accept="image/*"
+                  multiple={false}
+                  onChange={(e) => {
+                    console.log(e.target.files?.[0])
+                    onChange(e.target.files?.[0] ?? null)
+                  }}
                 />
               </FormControl>
             </div>

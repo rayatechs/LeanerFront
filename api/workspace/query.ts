@@ -13,12 +13,12 @@ export const useWorkspaces = () => {
   const queryClient = useQueryClient();
 
   const workspacesQuery = (): UseQueryResult<Array<WorkspaceResource>, Error> =>
-  useQuery({
-    queryKey: ['workspaces'],
-    queryFn: getWorkspaces,
-    staleTime: 1000 * 60 * 5, // 5 minutes
-    select: (res) => res.data,
-  });
+    useQuery({
+      queryKey: ['workspaces'],
+      queryFn: getWorkspaces,
+      staleTime: 1000 * 60 * 5, // 5 minutes
+      select: (res) => res.data,
+    });
 
   const createMutation = (): UseMutationResult<
     IResponse<WorkspaceResource>,
@@ -48,3 +48,32 @@ export const useWorkspaces = () => {
     deleteMutation,
   };
 };
+
+export const useCreateMutation = (): UseMutationResult<
+  IResponse<WorkspaceResource>,
+  IValidationError<WorkspaceResource>,
+  IRequest<FormRequest>
+> => {
+  return useMutation({
+    mutationFn: (data) => createWorkspace(data),
+  });
+};
+
+export const useUpdateMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: ({ id, form }: { id: string; form: any }) =>
+      updateWorkspace(id, form),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['workspaces'] }),
+  });
+}
+
+export const useDeleteMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (id: string) => deleteWorkspace(id),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['workspaces'] }),
+  });
+}

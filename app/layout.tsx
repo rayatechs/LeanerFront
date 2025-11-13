@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/app/theme-provider";
 import ClientQueryProvider from "./query-provider";
 import { Toaster } from "@/components/ui/sonner"; // <-- Import Toaster
+import ErrorBoundary from "@/components/ui/error-boundary";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,17 +36,19 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${vazirmatn.variable} antialiased`}
       >
-        <ClientQueryProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Toaster /> {/* <-- Add Toaster here */}
-            {children}
-          </ThemeProvider>
-        </ClientQueryProvider>
+        <ErrorBoundary>
+          <ClientQueryProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <Toaster /> {/* <-- Add Toaster here */}
+              {children}
+            </ThemeProvider>
+          </ClientQueryProvider>
+        </ErrorBoundary>
       </body>
     </html>
   );
