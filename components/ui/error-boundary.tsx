@@ -37,7 +37,7 @@ export default class ErrorBoundary extends Component<
     }
 
     override render() {
-        if (!this.state.hasError) {
+        if (this.state.hasError) {
             return (
                 <div className="flex items-center justify-center" style={{ minHeight: "100vh", padding: "1rem" }}>
                     <Card className="rounded-[16px] p-[12px] min-w-[280px]">
